@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import Product from "../components/Product";
-import products from "../products";
-
+//import products from "../products";
+import axios from "axios";
 
 const HomeScreen = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("/api/products").then((data) => {
+      console.log(data);
+      setProducts(data.data);
+    });
+  }, []);
   return (
     <>
       <Row>
