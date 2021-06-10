@@ -13,7 +13,7 @@ const ProductScreen = ({ match }) => {
       setProduct(data.data);
     })
     
-  },[])
+  },[match])
   return (
     <div>
       <Link className="btn btn-dark my-3" to="/">
