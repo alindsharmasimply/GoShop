@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Product = require('../models/productModel');
+import Product from '../models/productModel.js';
 
 
 //Fetch all the products
-router.get('/', (req, res) => {
+router.get('/',(req, res) => {
     Product.find({}).then((products) =>{
         console.log('Products retrieved');
         res.json(products);
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 //Fetch a single product with an id
-router.get('/:id', (req, res) => {
+router.get('/:id',(req, res) => {
     Product.findById(req.params.id).then((product) => {
         if(product)
         {
@@ -27,4 +27,4 @@ router.get('/:id', (req, res) => {
     
 });
 
-module.exports = router;
+export default router;
