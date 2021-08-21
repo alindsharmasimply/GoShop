@@ -8,9 +8,10 @@ import Message from "../components/Message";
 //import products from "../products";
 import Rating from "../components/Rating";
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
   // const product = products.find((p) => p._id === match.params.id);
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
+
   const dispatch = useDispatch();
   const productDetails = useSelector(state => state.productDetails);
   const { loading, error, product} = productDetails;
@@ -19,7 +20,9 @@ const ProductScreen = ({ match }) => {
     dispatch(listProductDetails(match.params.id));
 
   },[match])
-
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
   return (
     <div>
       <>
@@ -94,7 +97,9 @@ const ProductScreen = ({ match }) => {
                     </ListGroup.Item>
                 }
                 <ListGroup.Item className='text-center'>
-                    <Button className='btn-block' type='button' disabled={product.countInStock > 0 ? false : true}>
+                    <Button className='btn-block' 
+                    onClick={addToCartHandler}
+                    type='button' disabled={product.countInStock > 0 ? false : true}>
                         Add to Cart
                     </Button>
                 </ListGroup.Item>
