@@ -37,3 +37,8 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+.formGroup {
+  padding-top: 7px;
+  padding-bottom: 15px;
+}
