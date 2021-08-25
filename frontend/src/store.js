@@ -4,8 +4,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { productListReducer } from "./reducers/productReducers";
 import { productDetailReducer } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
-import { userDetailsReducer, userLoginReducer, userUpdateProfileReducer } from "./reducers/userReducers";
+import {
+  userDetailsReducer,
+  userLoginReducer,
+  userUpdateProfileReducer,
+} from "./reducers/userReducers";
 import { userRegisterReducer } from "./reducers/userReducers";
+import { orderCreateReducer } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -14,7 +19,8 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
-  userUpdateProfile: userUpdateProfileReducer
+  userUpdateProfile: userUpdateProfileReducer,
+  orderCreate: orderCreateReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
@@ -30,9 +36,8 @@ const initialState = {
     cartItems: cartItemsFromStorage,
   },
   userLogin: {
-     userInfo: userInfoFromStorage
+    userInfo: userInfoFromStorage,
   },
-
 };
 const middleware = [thunk];
 const store = createStore(
